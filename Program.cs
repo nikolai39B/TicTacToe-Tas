@@ -23,6 +23,11 @@ namespace TicTacToe
 
             board.PrintBoard();
 
+            /*Console.WriteLine("Ay yo whatchu want");
+            string userInput = Console.ReadLine();             Figuring out how to shit
+            */
+
+            Console.WriteLine(userInput);
             Console.ReadKey();
         }
     }
