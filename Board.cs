@@ -89,11 +89,6 @@ namespace TicTacToe
         // Checks the pieces present in the board to determine gameStatus, returning the Status
         public bool GameStatus()
         {
-            if (numPieces == numSpaces) 
-            {
-                gameStatus = true;
-                return true;
-            }
 
             // Begins checking possibilities for a winning combination of pieces (Column Portions)
 
@@ -123,11 +118,11 @@ namespace TicTacToe
 
             for (int i = 0; i < NumCols && !gameStatus; i++)
             {
-                char currentColPiece = Pieces[i, 0];                            
+                char currentRowPiece = Pieces[0, i];                            
 
-                for (int ii = 0; ii < NumRpws && !gameStatus; ii++)
+                for (int ii = 0; ii < NumRows && !gameStatus; ii++)
                 {
-                    char currentRowPiece = Pieces[i, ii];                       
+                    char currentColPiece = Pieces[ii, i];                       
 
                     if (currentRowPiece != currentColPiece)                    
                     {                                                          
@@ -143,6 +138,50 @@ namespace TicTacToe
             
             }
 
+            for (int i = 0; i < NumRows && !gameStatus; i++) 
+            {
+                char currentPiece = Pieces[i, i];
+               
+                for (int ii = 0; ii < NumCols && !gameStatus; ii++) 
+                {
+                    char comparingPiece = Pieces[ii, ii];
+
+                    if (currentPiece != comparingPiece)
+                    {
+                        break;
+                    }
+
+                    if (ii == NumCols && currentPiece == comparingPiece)
+                    {
+                        gameStatus = true;
+                    }
+
+                }
+
+            }
+
+            for (int i = NumRows; i < NumRows && !gameStatus; i--)
+            {
+                char currentPiece = Pieces[i, i];
+
+                for (int ii = NumCols; ii < NumCols && !gameStatus; ii--)
+                {
+                    char comparingPiece = Pieces[ii, ii];
+
+                    if (currentPiece != comparingPiece)
+                    {
+                        break;
+                    }
+
+                    if (ii == 0 && currentPiece == comparingPiece)
+                    {
+                        gameStatus = true;
+                    }
+
+                }
+
+            }
+
             // Extremely disgusting checking for Tic-Tac-Toe boards with dimensions of 3x3
             /*
             if (Pieces[0, 0].Equals(Pieces[0, 1].Equals(Pieces[0, 2])) ||
@@ -156,6 +195,10 @@ namespace TicTacToe
             }
             */
 
+            if (!gameStatus && (numPieces == numSpaces))                        // Checks whether or not the method has gone through all other loops,
+            {                                                                   // If this is true, and the Board is totally filled, the statement 
+                gameStatus = true;                                              // Changes the gameStatus to true, ending the game
+            }
 
             return gameStatus;
         }
