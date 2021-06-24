@@ -9,6 +9,8 @@ namespace TicTacToe
 {
     class Board
     {
+        public bool gameStatus = false;  // Tracks whether the status of the game is incomplete (false) or complete (true)
+        
         //=============//
         // Constructor //
         //=============//
@@ -62,6 +64,26 @@ namespace TicTacToe
             }
         }
 
+        
+        // Clears Board for a New Game
+        public void ClearBoard()
+        {
+            for (int i = 0; i < NumRows; i++)
+            {
+                for (int ii = 0; ii < NumCols; ii++)
+                {
+                    Pieces[i, ii] = '\0';
+                }
+            }
+        }
+
+
+
+        // Checks the pieces present in the board to determine gameStatus, returning the Status
+        public bool GameStatus()
+        { 
+        
+        }
 
         //============//
         // Properties //

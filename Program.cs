@@ -22,12 +22,17 @@ namespace TicTacToe
             board.AddPiece(1, 1, 'X');
 
             board.PrintBoard();
+            Console.WriteLine(); 
 
             /*Console.WriteLine("Ay yo whatchu want");
             string userInput = Console.ReadLine();             Figuring out how to shit
             */
 
-            Console.WriteLine(userInput);
+            board.ClearBoard();
+            board.PrintBoard();
+            Console.WriteLine();
+
+            //Console.WriteLine(userInput);
             Console.ReadKey();
         }
     }
