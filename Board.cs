@@ -138,17 +138,19 @@ namespace TicTacToe
             
             }
 
+            // Tests the possible Diagonal win going from top left to bottom right positions on the board
+
             for (int i = 0; i < NumRows && !gameStatus; i++) 
             {
-                char currentPiece = Pieces[i, i];
+                char currentPiece = Pieces[i, i];                           
                
                 for (int ii = 0; ii < NumCols && !gameStatus; ii++) 
                 {
-                    char comparingPiece = Pieces[ii, ii];
-
+                    char comparingPiece = Pieces[ii, ii];                       // Instead of using Pieces in the same row/col, using indexes [i, i] or [ii, ii]
+                                                                                // Ensures that the comparing pieces will be in diagonal positions going through the loop
                     if (currentPiece != comparingPiece)
                     {
-                        break;
+                        break;                                                  // Breaks if win is impossible (not every single piece in the diagonal is the same **Subject to Change**
                     }
 
                     if (ii == NumCols && currentPiece == comparingPiece)
@@ -160,12 +162,15 @@ namespace TicTacToe
 
             }
 
-            for (int i = NumRows; i < NumRows && !gameStatus; i--)
+            // Tests an alternative Diagonal win going from the bottom left to top right positions on the board
+            // Essentially is the same as the previous for loops, but initial conditions are different 
+
+            for (int i = NumRows - 1; i < NumRows && !gameStatus; i--)           // Initializes the loop at the bottom of the grid (since NumRows returns length, index will be NumRows - 1) 
             {
                 char currentPiece = Pieces[i, i];
 
-                for (int ii = NumCols; ii < NumCols && !gameStatus; ii--)
-                {
+                for (int ii = NumCols - 1; ii < NumCols && !gameStatus; ii--)    // Performs same initalization as the initial for loop
+                { 
                     char comparingPiece = Pieces[ii, ii];
 
                     if (currentPiece != comparingPiece)
@@ -181,6 +186,8 @@ namespace TicTacToe
                 }
 
             }
+
+
 
             // Extremely disgusting checking for Tic-Tac-Toe boards with dimensions of 3x3
             /*
