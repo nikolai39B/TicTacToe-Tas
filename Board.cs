@@ -9,14 +9,17 @@ namespace TicTacToe
 {
     class Board
     {
-        public bool gameStatus = false;  // Tracks whether the status of the game is incomplete (false) or complete (true)
-        
+        private bool gameStatus = false;  // Tracks whether the status of the game is incomplete (false) or complete (true)
+        private int numPieces = 0;        // Tracks the number of pieces on the board at any given time
+        private int numSpaces = 0;        // Determines maximum number of pieces on the board (due to Board object having possible unusual dimensions)
+
         //=============//
         // Constructor //
         //=============//
         public Board(int rows, int cols)
         {
             Pieces = new char[rows, cols];
+            numSpaces = rows * cols;
         }
 
 
@@ -30,6 +33,7 @@ namespace TicTacToe
             Debug.Assert(col < NumCols);
 
             Pieces[row, col] = piece;
+            numPieces++;
         }
 
 
@@ -65,7 +69,8 @@ namespace TicTacToe
         }
 
         
-        // Clears Board for a New Game
+        // Clears Board for a New Game,
+        // Also resets numPieces counter and the gameStatus tracker
         public void ClearBoard()
         {
             for (int i = 0; i < NumRows; i++)
@@ -75,14 +80,42 @@ namespace TicTacToe
                     Pieces[i, ii] = '\0';
                 }
             }
+            numPieces = 0;
+            gameStatus = false;
         }
 
 
 
         // Checks the pieces present in the board to determine gameStatus, returning the Status
         public bool GameStatus()
-        { 
-        
+        {
+            if (numPieces == numSpaces) 
+            {
+                gameStatus = true;
+                return true;
+            }
+
+            // Begins checking possibilities for a winning combination of pieces 
+
+            for (int i = 0; i < NumRows && gameStatus == false; i++)
+            {
+                char currentRowPiece = Pieces[i, 0];
+                
+                for (int ii = 0; ii < NumCols; ii++)
+                {
+                    char currentColPiece = Pieces[i, ii];
+                    if (currentRowPiece != currentColPiece)
+                    {
+                        break;
+                    }
+                }
+
+
+            }
+
+
+
+            return gameStatus;
         }
 
         //============//
