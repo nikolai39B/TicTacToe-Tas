@@ -140,6 +140,8 @@ namespace TicTacToe
 
             // Tests the possible Diagonal win going from top left to bottom right positions on the board
 
+            int lastRow = NumRows - 1;
+
             for (int i = 0; i < NumRows && !gameStatus; i++) 
             {
                 char currentPiece = Pieces[i, i];                           
@@ -162,27 +164,22 @@ namespace TicTacToe
 
             }
 
-            // Tests an alternative Diagonal win going from the bottom left to top right positions on the board
-            // Essentially is the same as the previous for loops, but initial conditions are different 
 
-            for (int i = NumRows - 1; i < NumRows && !gameStatus; i--)           // Initializes the loop at the bottom of the grid (since NumRows returns length, index will be NumRows - 1) 
-            {
-                char currentPiece = Pieces[i, i];
+            char bottomToTopCompare = Pieces[lastRow, lastRow];
 
-                for (int ii = NumCols - 1; ii < NumCols && !gameStatus; ii--)    // Performs same initalization as the initial for loop
-                { 
+
+            for (int ii = NumCols - 1; ii < NumCols && !gameStatus; ii--)  // MUST EXAMINE DURING NEXT SESSION  
+                {                                                          // INCOMPLETE
                     char comparingPiece = Pieces[ii, ii];
 
-                    if (currentPiece != comparingPiece)
-                    {
-                        break;
-                    }
+                if (bottomToTopCompare != comparingPiece)
+                {
+                    break;
+                }
 
-                    if (ii == 0 && currentPiece == comparingPiece)
-                    {
-                        gameStatus = true;
-                    }
-
+                if (ii == 0 && bottomToTopCompare == comparingPiece)
+                {
+                    gameStatus = true;
                 }
 
             }
