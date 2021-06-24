@@ -97,20 +97,37 @@ namespace TicTacToe
 
             // Begins checking possibilities for a winning combination of pieces 
 
-            for (int i = 0; i < NumRows && gameStatus == false; i++)
+            /*for (int i = 0; i < NumRows && !gameStatus; i++)
             {
                 char currentRowPiece = Pieces[i, 0];
                 
-                for (int ii = 0; ii < NumCols; ii++)
+                for (int ii = 0; ii < NumCols && !gameStatus; ii++)
                 {
                     char currentColPiece = Pieces[i, ii];
                     if (currentRowPiece != currentColPiece)
                     {
                         break;
                     }
+
+                    if (ii == NumCols && currentColPiece == currentRowPiece)
+                    {
+                        gameStatus = true;
+                    }
                 }
 
 
+            }*/
+
+            // Extremely disgusting checking for Tic-Tac-Toe boards with dimensions of 3x3
+
+            if (Pieces[0, 0].Equals(Pieces[0, 1].Equals(Pieces[0, 2])) ||
+                Pieces[1, 0].Equals(Pieces[1, 1].Equals(Pieces[1, 2])) ||
+                Pieces[2, 0].Equals(Pieces[2, 1].Equals(Pieces[2, 2])) ||
+                Pieces[0, 0].Equals(Pieces[1, 1].Equals(Pieces[2, 2])) ||
+                Pieces[2, 0].Equals(Pieces[1, 1].Equals(Pieces[0, 2])) ||
+                )
+            {
+                gameStatus = true;
             }
 
 
