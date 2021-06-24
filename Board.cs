@@ -95,31 +95,56 @@ namespace TicTacToe
                 return true;
             }
 
-            // Begins checking possibilities for a winning combination of pieces 
+            // Begins checking possibilities for a winning combination of pieces (Column Portions)
 
-            /*for (int i = 0; i < NumRows && !gameStatus; i++)
+            for (int i = 0; i < NumRows && !gameStatus; i++)
             {
-                char currentRowPiece = Pieces[i, 0];
+                char currentRowPiece = Pieces[i, 0];                            // Holds current value of the Row Piece
                 
                 for (int ii = 0; ii < NumCols && !gameStatus; ii++)
                 {
-                    char currentColPiece = Pieces[i, ii];
-                    if (currentRowPiece != currentColPiece)
-                    {
+                    char currentColPiece = Pieces[i, ii];                       // Holds current value of the Column Piece
+
+                    if (currentRowPiece != currentColPiece)                     // Compares Row and Column Pieces 
+                    {                                                           // If Row != Column, winning is impossible, thus breaking loop checking
                         break;
                     }
 
-                    if (ii == NumCols && currentColPiece == currentRowPiece)
-                    {
-                        gameStatus = true;
+                    if (ii == NumCols && currentColPiece == currentRowPiece)    // Claims that if the ii variable (tracking column position) is in the final position in the column  
+                    {                                                           // And that the loop has not yet broken, AND the final character is equivalent to the inital character
+                        gameStatus = true;                                      // There is a Winner, breaking out of both loops and returning the gameStatus Variable
                     }
+                
                 }
 
+            }
 
-            }*/
+            // Performs same function as the first grouping of nested for loops, but for the Row Pieces
+
+            for (int i = 0; i < NumCols && !gameStatus; i++)
+            {
+                char currentColPiece = Pieces[i, 0];                            
+
+                for (int ii = 0; ii < NumRpws && !gameStatus; ii++)
+                {
+                    char currentRowPiece = Pieces[i, ii];                       
+
+                    if (currentRowPiece != currentColPiece)                    
+                    {                                                          
+                        break;
+                    }
+
+                    if (ii == NumCols && currentColPiece == currentRowPiece)      
+                    {                                                          
+                        gameStatus = true;                                     
+                    }
+                
+                }
+            
+            }
 
             // Extremely disgusting checking for Tic-Tac-Toe boards with dimensions of 3x3
-
+            /*
             if (Pieces[0, 0].Equals(Pieces[0, 1].Equals(Pieces[0, 2])) ||
                 Pieces[1, 0].Equals(Pieces[1, 1].Equals(Pieces[1, 2])) ||
                 Pieces[2, 0].Equals(Pieces[2, 1].Equals(Pieces[2, 2])) ||
@@ -129,7 +154,7 @@ namespace TicTacToe
             {
                 gameStatus = true;
             }
-
+            */
 
 
             return gameStatus;
