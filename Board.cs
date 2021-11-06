@@ -9,7 +9,7 @@ namespace TicTacToe
 {
     public class Board
     {
-       
+
 
         //=============//
         // Constructor //
@@ -30,7 +30,7 @@ namespace TicTacToe
             Debug.Assert(col < NumCols);
 
             Pieces[row, col] = piece;
-            
+
         }
 
 
@@ -65,7 +65,7 @@ namespace TicTacToe
             }
         }
 
-        
+
         // Clears Board for a New Game,
         // Also resets numPieces counter and the gameStatus tracker
         public void ClearBoard()
@@ -77,15 +77,35 @@ namespace TicTacToe
                     Pieces[i, ii] = '\0';
                 }
             }
-            gameStatus = false;
         }
 
+        public int GetNumPieces() {
+            int numChars = 0;
 
+            for (int rows = 0; rows < NumRows; rows++) 
+            {
+                for (int cols = 0; cols < NumCols; cols ++)
+                {
+                    if (Pieces[rows, cols] != '\0')
+                    {
+                        numChars++;
+                    }
+                }
+            }
 
-        // Checks the pieces present in the board to determine gameStatus, returning the Status
-        public bool GameStatus()
+            return numChars;
+        }
+
+        public bool IsPiece(int row, int col)
         {
-            return gameStatus;
+            if (Pieces[row, col] != '\0')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //============//
@@ -94,8 +114,6 @@ namespace TicTacToe
         public char[,] Pieces { get; private set; }
         public int NumRows { get { return Pieces.GetLength(0); } }
         public int NumCols { get { return Pieces.GetLength(1); } }
-
-        private bool gameStatus = false;
         public int NumSpaces { get { return Pieces.GetLength(0) * Pieces.GetLength(1); } }        
     }
 }

@@ -10,6 +10,7 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
+            /*
             // Create a board
             Board board = new Board(3, 3);
 
@@ -26,13 +27,41 @@ namespace TicTacToe
 
             /*Console.WriteLine("Ay yo whatchu want");
             string userInput = Console.ReadLine();             Figuring out how to shit
-            */
+            *
 
             board.ClearBoard();
             board.PrintBoard();
             Console.WriteLine();
 
             //Console.WriteLine(userInput);
+            Console.ReadKey();
+            */
+
+            Game TTT = new Game();
+
+            TTT.TicTacToeBoard.PrintBoard();
+            char nextPlayer = 'X';
+
+            while (TTT.GameStatus())
+            {
+                TTT.AddPiece(nextPlayer);
+                if (nextPlayer == 'X')
+                {
+                    nextPlayer = 'O';
+                }
+                else if (nextPlayer == 'O')
+                {
+                    nextPlayer = 'X';
+                }
+
+
+
+                TTT.TicTacToeBoard.PrintBoard();
+
+            }
+
+
+
             Console.ReadKey();
         }
     }
